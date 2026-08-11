@@ -9,10 +9,18 @@
 
 <style>
   df-messenger {
-    --df-messenger-bot-message: #f1f1f1;
     --df-messenger-button-titlebar-color: #28a745;
-    --df-messenger-chat-background-color: #ffffff;
-    --df-messenger-font-color: #212529;
-    --df-messenger-send-icon: #28a745;
+  }
+
+  /* Full-screen chatbot */
+  df-messenger.df-messenger-open {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
   }
 </style>
