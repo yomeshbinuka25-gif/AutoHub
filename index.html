@@ -17,21 +17,19 @@
         body {
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
 
         body {
-            background: #f5f7f9;
             font-family: Arial, sans-serif;
+            background: #ffffff;
         }
 
         .chat-container {
-            width: min(95vw, 500px);
-            height: min(90vh, 700px);
-            margin: 5vh auto;
-            background: #ffffff;
-            border-radius: 15px;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
             overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
         }
 
         .chat-container iframe {
@@ -40,33 +38,16 @@
             border: none;
             display: block;
         }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-            body {
-                background: #ffffff;
-            }
-
-            .chat-container {
-                width: 100%;
-                height: 100vh;
-                margin: 0;
-                border-radius: 0;
-                box-shadow: none;
-            }
-        }
     </style>
 </head>
 
 <body>
 
     <div class="chat-container">
-
         <iframe
             allow="microphone;"
             src="https://console.dialogflow.com/api-client/demo/embedded/075a38f9-83fe-43cc-916a-02ff3234b524">
         </iframe>
-
     </div>
 
 </body>
