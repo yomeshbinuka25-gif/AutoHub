@@ -6,6 +6,8 @@
 
     <title>AutoHub - AUTO</title>
 
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
     <style>
         * {
             margin: 0;
@@ -21,73 +23,105 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
             background: #ffffff;
         }
 
-        /*
-         * Make Dialogflow Messenger fill
-         * the complete browser window.
-         */
         df-messenger {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 9999;
+            z-index: 99999;
 
             --df-messenger-button-titlebar-color: #28a745;
             --df-messenger-button-titlebar-font-color: #ffffff;
-
             --df-messenger-chat-background-color: #ffffff;
-
             --df-messenger-bot-message: #f1f3f5;
             --df-messenger-user-message: #28a745;
-
             --df-messenger-font-color: #212529;
-
             --df-messenger-input-box-color: #ffffff;
             --df-messenger-input-font-color: #212529;
-            --df-messenger-input-placeholder-font-color: #6c757d;
-
             --df-messenger-send-icon: #28a745;
         }
-
-        /*
-         * Desktop
-         */
-        @media (min-width: 601px) {
-            df-messenger {
-                width: 100vw;
-                height: 100vh;
-            }
-        }
-
-        /*
-         * Mobile
-         */
-        @media (max-width: 600px) {
-            df-messenger {
-                width: 100vw;
-                height: 100dvh;
-            }
-        }
     </style>
-
-    <!-- Dialogflow Messenger -->
-    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 </head>
 
 <body>
 
     <df-messenger
+        id="autoMessenger"
         intent="WELCOME"
         chat-title="AUTO"
         agent-id="075a38f9-83fe-43cc-916a-02ff3234b524"
         language-code="en"
         expand>
     </df-messenger>
+
+    <script>
+        const messenger = document.getElementById("autoMessenger");
+
+        function hideMessengerButton() {
+
+            if (!messenger.shadowRoot) {
+                return;
+            }
+
+            /*
+             * Dialogflow Messenger floating button
+             */
+            const button =
+                messenger.shadowRoot.querySelector("#widgetIcon");
+
+            if (button) {
+                button.style.display = "none";
+            }
+
+            /*
+             * Hide wrapper if it only contains
+             * the floating button.
+             */
+            const wrapper =
+                messenger.shadowRoot.querySelector(".df-messenger-wrapper");
+
+            if (wrapper) {
+                const icon =
+                    wrapper.querySelector("#widgetIcon");
+
+                if (icon) {
+                    icon.style.display = "none";
+                }
+            }
+        }
+
+        /*
+         * Wait until Dialogflow Messenger is loaded
+         */
+        messenger.addEventListener(
+            "df-messenger-loaded",
+            () => {
+
+                setTimeout(() => {
+                    hideMessengerButton();
+                }, 300);
+
+                setTimeout(() => {
+                    hideMessengerButton();
+                }, 1000);
+
+                setTimeout(() => {
+                    hideMessengerButton();
+                }, 2000);
+            }
+        );
+
+        /*
+         * Extra check because Messenger can
+         * recreate its internal elements.
+         */
+        setInterval(() => {
+            hideMessengerButton();
+        }, 1000);
+    </script>
 
 </body>
 </html>
