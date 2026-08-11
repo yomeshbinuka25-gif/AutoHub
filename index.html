@@ -25,30 +25,69 @@
             background: #ffffff;
         }
 
-        .chat-container {
-            width: 100%;
+        /*
+         * Make Dialogflow Messenger fill
+         * the complete browser window.
+         */
+        df-messenger {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
             height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
+            z-index: 9999;
+
+            --df-messenger-button-titlebar-color: #28a745;
+            --df-messenger-button-titlebar-font-color: #ffffff;
+
+            --df-messenger-chat-background-color: #ffffff;
+
+            --df-messenger-bot-message: #f1f3f5;
+            --df-messenger-user-message: #28a745;
+
+            --df-messenger-font-color: #212529;
+
+            --df-messenger-input-box-color: #ffffff;
+            --df-messenger-input-font-color: #212529;
+            --df-messenger-input-placeholder-font-color: #6c757d;
+
+            --df-messenger-send-icon: #28a745;
         }
 
-        .chat-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
+        /*
+         * Desktop
+         */
+        @media (min-width: 601px) {
+            df-messenger {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
+        /*
+         * Mobile
+         */
+        @media (max-width: 600px) {
+            df-messenger {
+                width: 100vw;
+                height: 100dvh;
+            }
         }
     </style>
+
+    <!-- Dialogflow Messenger -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 </head>
 
 <body>
 
-    <div class="chat-container">
-        <iframe
-            allow="microphone;"
-            src="https://console.dialogflow.com/api-client/demo/embedded/075a38f9-83fe-43cc-916a-02ff3234b524">
-        </iframe>
-    </div>
+    <df-messenger
+        intent="WELCOME"
+        chat-title="AUTO"
+        agent-id="075a38f9-83fe-43cc-916a-02ff3234b524"
+        language-code="en"
+        expand>
+    </df-messenger>
 
 </body>
 </html>
